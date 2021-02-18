@@ -1,0 +1,33 @@
+baseURL = "https://pokenews.vercel.app/"
+languageCode = "en-us"
+title = "GameBucket"
+theme = "Hugo-Octopress"
+
+# Number of blog posts in each pagination page
+paginate = 6
+
+[permalinks]
+# Configures post URLs
+post = "/blog/:year-:month-:day-:title/"
+
+
+[params]
+
+  # If false, all contents of posts will appear on the front page and in pagination
+  truncate = true
+
+  # Author's name (appears in meta tags and under posts)
+  author = "b3ntuz1"
+
+  # Social networks
+  github = "https://github.com/b3ntuz1/hugo"
+  twitter = "https://twitter.com/b3ntuz1"
+  facebook = ""
+  instagram = ""
+  telegram = "https://t.me/pokenews_channel"
+
+[[menu.main]]
+  Name = "Blog"
+  URL = "/"
+  weight = -10
+
