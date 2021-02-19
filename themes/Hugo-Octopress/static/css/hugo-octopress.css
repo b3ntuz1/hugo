@@ -772,6 +772,7 @@ body.sidebar-footer .toggle-sidebar {
     }
 }
 body>header {
+    background-image: url('/media/background.jpg');
     background: #333
 }
 body>header h1 {
