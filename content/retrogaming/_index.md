@@ -1,0 +1,1 @@
+* ![День спільноти в березні присв'ячений Флетчінгу](/categories/pokemong/community-day-in-march/)
