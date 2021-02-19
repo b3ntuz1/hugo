@@ -1,7 +1,8 @@
 baseURL = "https://gamebucket.onrender.com"
 languageCode = "en-us"
-title = "GameBucket"
-theme = "Hugo-Octopress"
+title = "Game Bucket"
+theme = "hyde-hyde"
+
 
 # Number of blog posts in each pagination page
 paginate = 6
@@ -12,22 +13,25 @@ post = "/blog/:year-:month-:day-:title/"
 
 
 [params]
-
-  # If false, all contents of posts will appear on the front page and in pagination
-  truncate = true
-
-  # Author's name (appears in meta tags and under posts)
-  author = "b3ntuz1"
-
-  # Social networks
-  github = "https://github.com/b3ntuz1/hugo"
-  twitter = "https://twitter.com/b3ntuz1"
-  facebook = ""
-  instagram = ""
-  telegram = "https://t.me/pokenews_channel"
+  mainSections = ["pokemongo", "retronews"]
 
 [[menu.main]]
   Name = "Blog"
   URL = "/"
   weight = -10
 
+[[menu.main]]
+  Name = "Pokemon GO"
+  URL = "/pokemongo/"
+  identifier = "pokemongo"
+  weight = -5
+
+[[menu.main]]
+  Name = "Retro gaming"
+  URL = "/retrogaming/"
+  identifier = "retrogaming"
+  weight = -4
+
+[params.social]
+  twitter = "b3ntuz1"
+  telegram = "pokemonews"
