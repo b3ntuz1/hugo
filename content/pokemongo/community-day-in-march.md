@@ -1,7 +1,8 @@
 ---
-title: 'День спільноти в березні'
+title: "День спільноти в березні присв'ячений Флетчінгу"
 draft: false
 date: 2020-02-18T17:18:05+00:00
+author: b3ntuz1
 ---
 
 ![fletching](/media/march-cd.jpg)
