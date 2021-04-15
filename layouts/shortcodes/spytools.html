@@ -1,0 +1,27 @@
+<div id="rvrs">
+	<div contenteditable="true" id="text" style="border: 2px solid purple; border-radius: 5px;">Enter text here...</div>
+	<label for="split_words">Split words</label>
+	<input type="checkbox" name="split_words" checked=false id="split_words" />
+	<label for="rot1">Encode</label>
+	<input type="checkbox" name="rot1" checked=false />
+	<input type="text" name="rot1" value='24' />
+	<br />
+	<button id="clear">Clear</button> | 
+	<button id='reverse'>Reverse</button>
+	<button id="rotation1">ROT1</button>
+	<p id="view">Nothing here</p>
+</div>
+<script type="module">
+	import {onclickwrapper, sezare} from "/main.js";
+	var reverse = document.getElementById("reverse");
+	reverse.onclick = onclickwrapper;
+
+	var rotation1 = document.getElementById('rotation1');
+	rotation1.onclick = sezare;
+
+	document.querySelector('#clear').onclick = function () {
+		document.querySelector('#text').innerText = '';
+		document.querySelector('#view').innerText = 'Nothing here';
+	};
+</script>
+
