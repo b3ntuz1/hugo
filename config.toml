@@ -32,6 +32,12 @@ post = "/blog/:year-:month-:day-:title/"
   identifier = "retrogaming"
   weight = -4
 
+[[menu.main]]
+  Name = "Shelf"
+  URL = "/shelf/"
+  identifier = "shelf"
+  weight = -4
+
 [params.social]
   twitter = "b3ntuz1"
   telegram = "pokemonews"
