@@ -55,8 +55,8 @@
 	let crypto = document.querySelector('#crypto');
 	let rot1_offset = document.querySelector('#rot1_offset');
 
-	sifr.onclick = switcher;
-	sifr.onmouseover = switcher;
+	sifr.addEventListener('click', switcher);
+	sifr.addEventListener('touchstart', switcher);
 
 	function switcher() {
 		console.log("hello");
