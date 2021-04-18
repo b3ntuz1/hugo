@@ -1,31 +1,99 @@
 <div id="rvrs">
-	<!-- <div contenteditable="true" id="text" style="border: 2px solid purple; border-radius: 5px;">Enter text here...</div> -->
+	<style>
+		.float_left_100 {
+			float: left;
+			width: 100%;
+		}
+		.visible_elem {
+			display: inline;
+		}
+		.hidden_elem {
+			display: none;
+		}
+	</style>
 	<textarea id="text" style="border: 2px solid purple; border-radius: 5px; float: left; width: 49%; height: 300px;">Введіть сюди текст</textarea>
 	<textarea id="view" style="border: 2px solid violet; border-radius: 5px; float: right; width: 49%; height: 300px;">Тут буде результат</textarea>
-	<label for="split_words">Split words</label>
-	<input type="checkbox" name="split_words" checked=false id="split_words" />
-	<label for="rot1">Encode</label>
-	<input type="checkbox" name="rot1" checked=false />
-	<input type="text" name="rot1" value='24' />
-	<br />
-	<button id="clear">Clear</button> | 
-	<button id='reverse'>Reverse</button>
-	<button id="rotation1">ROT1</button>
-	<button id='morze'>Morze</button>
+
+	<hr class="float_left_100" />
+
+	<select id="encoding_method" class='float_left_100'>
+		<option>Reverse text</option>
+		<option>ROT1</option>
+		<option>Код Морзе</option>
+	</select>
+
+	<select id="alphabeth" class="float_left_100 hidden_elem">
+		<option>Ukrainian</option>
+		<option>Russian</option>
+		<option>English</option>
+	</select>
+
+	<span id="reverse_text" class='visible_elem'>
+		<label for="split_words">Split words</label>
+		<input type="checkbox" name="split_words" checked=false id="split_words" />
+	</span>
+	
+	<span id="crypto" class='hidden_elem'>
+		<label for="rot1">Encode</label>
+		<input type="checkbox" name="rot1" checked=false />
+		<input id="rot1_offset" type="text" name="rot1" value='24' />
+	</span>
+
+	<hr />
+	
+	<button id="clear">Clear</button>&nbsp;|&nbsp;
+	<button id="submit">Submit</button>
 	<!-- <pre id="view_pre" wrap="true"></pre> -->
 </div>
 <script type="module">
 	import {onclickwrapper, sezare, morze_func} from "/main.js";
-	let reverse = document.getElementById("reverse");
-	reverse.onclick = onclickwrapper;
 
-	let rotation1 = document.getElementById('rotation1');
-	rotation1.onclick = sezare;
+	let clear = document.querySelector('#clear');
+	let sifr = document.querySelector('#encoding_method');
+	let submit = document.querySelector('#submit');
+	let rvrs = document.querySelector('#reverse_text');
+	let crypto = document.querySelector('#crypto');
+	let rot1_offset = document.querySelector('#rot1_offset');
 
-	let morze_button = document.getElementById('morze');
-	morze_button.onclick = morze_func;
+	sifr.onclick = function() {
+		let velem = document.getElementsByClassName('visible_elem');
 
-	document.querySelector('#clear').onclick = function () {
+		for(let i = 0; i<velem.length; i++) {
+			velem[i].className = 'hidden_elem';
+		}
+
+		switch(sifr.selectedIndex) {
+			case 0:
+				rvrs.className = 'visible_elem';
+				break;
+			case 1:
+				crypto.className = 'visible_elem';
+				rot1_offset.className = 'visible_elem';
+				break
+			case 2:
+				crypto.className = 'visible_elem';
+				rot1_offset.className = 'hidden_elem';
+				break;
+		}
+	}
+
+	submit.onclick = function() {
+		let alphabeth = document.querySelector('#alphabeth').selectedIndex;
+
+		switch(sifr.selectedIndex) {
+			case 0: // reverse text
+				onclickwrapper();
+				break;
+			case 1: // rot1
+				sezare();
+				break;
+			case 2: // morze
+				morze_func();
+				break;
+		}
+	};
+
+	clear.onclick = function () {
 		document.querySelector('#text').value = '';
 		document.querySelector('#view').value = '';
 		// document.querySelector('#view_pre').innerText = '';
