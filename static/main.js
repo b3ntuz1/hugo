@@ -1,15 +1,16 @@
 import {rot1 as rot1} from "/rot1.js";
+import {encode_morze, decode_morze} from '/morze.js';
 
 // view
 const view_elem = document.querySelector("#view");
 function view(data) {
-	view_elem.innerText = data;
+	view_elem.value = String(data);
 }
 
 // data to proceed
 const text_elem = document.querySelector("#text");
 function getData() {
-	return text_elem.innerText;
+	return text_elem.value;
 }
 
 // reverse
@@ -47,5 +48,17 @@ export function sezare() {
 			);
 	} else {
 		raw_offset.value = 24;
+	}
+}
+
+export function morze_func() {
+	let elem = document.getElementsByName("rot1")[0];
+	let text = getData();
+	if(elem.checked) {
+		view(encode_morze(text));
+		// document.querySelector('#view_pre').innerText = encode_morze(text);
+	} else {
+		view(decode_morze(text));
+		// document.querySelector('#view_pre').innerText = decode_morze(text);
 	}
 }

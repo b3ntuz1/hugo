@@ -1,5 +1,7 @@
 <div id="rvrs">
-	<div contenteditable="true" id="text" style="border: 2px solid purple; border-radius: 5px;">Enter text here...</div>
+	<!-- <div contenteditable="true" id="text" style="border: 2px solid purple; border-radius: 5px;">Enter text here...</div> -->
+	<textarea id="text" style="border: 2px solid purple; border-radius: 5px; float: left; width: 49%; height: 300px;">Введіть сюди текст</textarea>
+	<textarea id="view" style="border: 2px solid violet; border-radius: 5px; float: right; width: 49%; height: 300px;">Тут буде результат</textarea>
 	<label for="split_words">Split words</label>
 	<input type="checkbox" name="split_words" checked=false id="split_words" />
 	<label for="rot1">Encode</label>
@@ -9,19 +11,26 @@
 	<button id="clear">Clear</button> | 
 	<button id='reverse'>Reverse</button>
 	<button id="rotation1">ROT1</button>
-	<p id="view">Nothing here</p>
+	<button id='morze'>Morze</button>
+	<!-- <pre id="view_pre" wrap="true"></pre> -->
 </div>
 <script type="module">
-	import {onclickwrapper, sezare} from "/main.js";
-	var reverse = document.getElementById("reverse");
+	import {onclickwrapper, sezare, morze_func} from "/main.js";
+	let reverse = document.getElementById("reverse");
 	reverse.onclick = onclickwrapper;
 
-	var rotation1 = document.getElementById('rotation1');
+	let rotation1 = document.getElementById('rotation1');
 	rotation1.onclick = sezare;
 
+	let morze_button = document.getElementById('morze');
+	morze_button.onclick = morze_func;
+
 	document.querySelector('#clear').onclick = function () {
-		document.querySelector('#text').innerText = '';
-		document.querySelector('#view').innerText = 'Nothing here';
+		document.querySelector('#text').value = '';
+		document.querySelector('#view').value = '';
+		// document.querySelector('#view_pre').innerText = '';
 	};
+
+	
 </script>
 
