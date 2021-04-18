@@ -55,11 +55,11 @@
 	let crypto = document.querySelector('#crypto');
 	let rot1_offset = document.querySelector('#rot1_offset');
 
-	sifr.addEventListener('click', switcher);
-	sifr.addEventListener('touchstart', switcher);
+	for(let i=0; i<sifr.options.length; i++) {
+  		sifr[i].addEventListener('click', switcher);
+	}
 
 	function switcher() {
-		console.log("hello");
 		let velem = document.getElementsByClassName('visible_elem');
 
 		for(let i = 0; i<velem.length; i++) {
