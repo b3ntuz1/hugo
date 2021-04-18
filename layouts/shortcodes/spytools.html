@@ -55,7 +55,11 @@
 	let crypto = document.querySelector('#crypto');
 	let rot1_offset = document.querySelector('#rot1_offset');
 
-	sifr.onclick = function() {
+	sifr.onclick = switcher;
+	sifr.onmouseover = switcher;
+
+	function switcher() {
+		console.log("hello");
 		let velem = document.getElementsByClassName('visible_elem');
 
 		for(let i = 0; i<velem.length; i++) {
