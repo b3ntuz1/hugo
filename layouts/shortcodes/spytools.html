@@ -3,6 +3,15 @@
 		.float_left_100 {
 			float: left;
 			width: 100%;
+			display: block;
+		}
+		.float_right_50 {
+			float: right;
+			width: 49%;
+		}
+		.float_left_50 {
+			float: left;
+			width: 49%;
 		}
 		.visible_elem {
 			display: inline;
@@ -11,70 +20,89 @@
 			display: none;
 		}
 	</style>
-	<textarea id="text" style="border: 2px solid purple; border-radius: 5px; float: left; width: 49%; height: 300px;">Введіть сюди текст</textarea>
-	<textarea id="view" style="border: 2px solid violet; border-radius: 5px; float: right; width: 49%; height: 300px;">Тут буде результат</textarea>
+	<div class='float_left_100'>
+		<textarea id="text" class='float_left_50' style="border: 2px solid purple; border-radius: 5px; height: 300px;">Введіть сюди текст</textarea>
+		<textarea id="view" class='float_right_50' style="border: 2px solid violet; border-radius: 5px; height: 300px;">Тут буде результат</textarea>
 
-	<hr class="float_left_100" />
-
-	<select id="encoding_method" class='float_left_100'>
-		<option>Reverse text</option>
-		<option>ROT1</option>
-		<option>Код Морзе</option>
-	</select>
-
-	<select id="alphabeth" class="float_left_100 hidden_elem">
-		<option>Ukrainian</option>
-		<option>Russian</option>
-		<option>English</option>
-	</select>
-
-	<span id="reverse_text" class='visible_elem'>
-		<label for="split_words">Split words</label>
-		<input type="checkbox" name="split_words" checked=false id="split_words" />
-	</span>
+		<hr class="float_left_100" />
+	</div>
 	
-	<span id="crypto" class='hidden_elem'>
-		<label for="rot1">Encode</label>
-		<input type="checkbox" name="rot1" checked=false />
-		<input id="rot1_offset" type="text" name="rot1" value='24' />
-	</span>
+	<div class='float_left_50'>
+		<ul style='list-style: none;'>
+			<li>
+				<input type='radio' id='rvrs_radio' name='crypto_method' checked />
+				<label for='rvrs_radio'>Reverse text</label>
+			</li>
 
-	<hr />
-	
-	<button id="clear">Clear</button>&nbsp;|&nbsp;
-	<button id="submit">Submit</button>
-	<!-- <pre id="view_pre" wrap="true"></pre> -->
+			<li>
+				<input type='radio' id='rot1_radio' name='crypto_method' />
+				<label for='rot1_radio'>ROT1</label>
+			</li>
+
+			<li>
+				<input type='radio' id='morze_radio' name='crypto_method' />
+				<label for='morze_radio'>Morze</label>
+			</li>
+		</ul>
+
+		<select id="alphabeth" class="float_left_100 hidden_elem">
+			<option>Ukrainian</option>
+			<option>Russian</option>
+			<option>English</option>
+		</select>
+	</div>
+
+	<div class="float_right_50">
+		<span id="reverse_text" class='visible_elem'>
+			<label for="split_words">Split words</label>
+			<input type="checkbox" name="split_words" checked=false id="split_words">
+		</span>
+		
+		<span id="crypto" class='hidden_elem'>
+			<label for="rot1">Encode</label>
+			<input type="checkbox" name="rot1" checked=false />
+			<input id="rot1_offset" type="text" name="rot1" value='24' />
+		</span>
+	</div>
+
+	<div class='float_left_100'>
+		<hr />
+		<button id="clear">Clear</button>&nbsp;|&nbsp;
+		<button id="submit">Submit</button>
+	</div>
 </div>
 <script type="module">
 	import {onclickwrapper, sezare, morze_func} from "/main.js";
 
 	let clear = document.querySelector('#clear');
-	let sifr = document.querySelector('#encoding_method');
+	let crypto_method = document.getElementsByName('crypto_method');
+	let sifr = '';
 	let submit = document.querySelector('#submit');
 	let rvrs = document.querySelector('#reverse_text');
 	let crypto = document.querySelector('#crypto');
 	let rot1_offset = document.querySelector('#rot1_offset');
 
-	for(let i=0; i<sifr.options.length; i++) {
-  		sifr[i].addEventListener('click', switcher);
+	for(let i = 0; i<crypto_method.length; i++) {
+		crypto_method[i].onclick = switcher;
 	}
 
 	function switcher() {
+		sifr = this.id;
 		let velem = document.getElementsByClassName('visible_elem');
 
 		for(let i = 0; i<velem.length; i++) {
 			velem[i].className = 'hidden_elem';
 		}
 
-		switch(sifr.selectedIndex) {
-			case 0:
+		switch(this.id) {
+			case 'rvrs_radio':
 				rvrs.className = 'visible_elem';
 				break;
-			case 1:
+			case 'rot1_radio':
 				crypto.className = 'visible_elem';
 				rot1_offset.className = 'visible_elem';
 				break
-			case 2:
+			case 'morze_radio':
 				crypto.className = 'visible_elem';
 				rot1_offset.className = 'hidden_elem';
 				break;
@@ -84,14 +112,14 @@
 	submit.onclick = function() {
 		let alphabeth = document.querySelector('#alphabeth').selectedIndex;
 
-		switch(sifr.selectedIndex) {
-			case 0: // reverse text
+		switch(sifr) {
+			case 'rvrs_radio': // reverse text
 				onclickwrapper();
 				break;
-			case 1: // rot1
+			case 'rot1_radio': // rot1
 				sezare();
 				break;
-			case 2: // morze
+			case 'morze_radio': // morze
 				morze_func();
 				break;
 		}
