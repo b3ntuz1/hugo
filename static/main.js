@@ -42,9 +42,10 @@ export function sezare() {
 	let elem = document.getElementsByName("rot1")[0];
 	let raw_offset = document.getElementsByName("rot1")[1];
 	let offset = Number(raw_offset.value);
+	let a = document.getElementById('alphabeth').value;
 	if(offset > 1 && offset < 124) {
 		view(
-			rot1(getData(), offset, elem.checked)
+			rot1(getData(), offset, a, elem.checked)
 			);
 	} else {
 		raw_offset.value = 24;

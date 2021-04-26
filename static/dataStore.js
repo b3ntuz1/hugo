@@ -20,7 +20,7 @@ export const MORZE_CODE_UA = merge(MORZE_ALPHABETH_UA, MORZE_NUMBERS);
 export const MORZE_ALPHABETH_EN = {'A':'*-','B':'-***','C':'-*-*','D':'-**','E':'*',
 'F':'**-*','G':'--*','H':'****','I':'**','J':'*---','K':'-*-','L':'*-**',
 'M':'--','N':'-*','O':'---','P':'*--*','Q':'--*-','R':'*-*','S':'***',
-'T':'-','U':'**-','V':'***-','W':'*--','X':'-**-','Y':'-*--','Z':' -**'};
+'T':'-','U':'**-','V':'***-','W':'*--','X':'-**-','Y':'-*--','Z':'-**'};
 export const MORZE_CODE_EN = merge(MORZE_ALPHABETH_EN, MORZE_NUMBERS);
 
 
@@ -28,6 +28,19 @@ export const ALPHABETH_RU = "абвгдеёжзийклмнопрстуфхцч�
 export const ALPHABETH_UA = "абвгґдеєжзиіїйклмнопрстуфхцчшщьюя";
 export const ALPHABETH_EN = "abcdefghijklmnopqrstuvwxyz";
 
+export function getAlphabeth(code) {
+	code = code.toLowerCase();
+	switch (code) {
+		case 'ru':
+			return ALPHABETH_RU;
+		case 'ua':
+			return ALPHABETH_UA;
+		case 'en':
+			return ALPHABETH_EN;
+		default:
+			return None;
+	}
+}
 
 function merge(obj1, obj2) {
 	for(let i in obj2) {
