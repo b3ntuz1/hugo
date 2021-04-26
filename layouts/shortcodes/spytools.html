@@ -46,9 +46,9 @@
 		</ul>
 
 		<select id="alphabeth" class="float_left_100">
-			<option>Ukrainian</option>
-			<option>Russian</option>
-			<option>English</option>
+			<option value='ua' default>Ukrainian</option>
+			<option value='ru'>Russian</option>
+			<option value='en'>English</option>
 		</select>
 	</div>
 
@@ -110,8 +110,6 @@
 	}
 
 	submit.onclick = function() {
-		let alphabeth = document.querySelector('#alphabeth').selectedIndex;
-
 		switch(sifr) {
 			case 'rvrs_radio': // reverse text
 				onclickwrapper();
@@ -128,6 +126,5 @@
 	clear.onclick = function () {
 		document.querySelector('#text').value = '';
 		document.querySelector('#view').value = '';
-		// document.querySelector('#view_pre').innerText = '';
 	};
 </script>

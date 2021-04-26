@@ -1,5 +1,5 @@
 import {rot1 as rot1} from "/rot1.js";
-import {encode_morze, decode_morze} from '/morze.js';
+import {morze} from '/morze.js';
 
 // view
 const view_elem = document.querySelector("#view");
@@ -54,9 +54,10 @@ export function sezare() {
 export function morze_func() {
 	let elem = document.getElementsByName("rot1")[0];
 	let text = getData();
+	let a = document.getElementById('alphabeth').value;
 	if(elem.checked) {
-		view(encode_morze(text));
+		view(morze(text, a));
 	} else {
-		view(decode_morze(text));
+		view(morze(text, a, false));
 	}
 }

@@ -1,3 +1,12 @@
+import {MORZE_NUMBERS, MORZE_ALPHABETH_RU, MORZE_ALPHABETH_UA, MORZE_ALPHABETH_EN} from '/dataStore.js';
+
+let scope = ['*', '-'];
+let alphabeth = {
+	'en': MORZE_ALPHABETH_EN,
+	'ru': MORZE_ALPHABETH_RU,
+	'ua': MORZE_ALPHABETH_UA,
+	};
+
 function checkin(symbol, arr) {
 	for(let i = 0; i <= arr.length; i++) {
 		if(symbol === arr[i]) {
@@ -7,29 +16,20 @@ function checkin(symbol, arr) {
 	return false;
 }
 
-let alfabeth_morze = {
-	"т": "-", "е": ".",
-	"а": ".-", "і": "..", "м": "--", "н": "-.",
-	"р": ".-.", "с": "...", "в": ".--", "к": "-.-", "г": "--.", "у": "..-", "д": "-..", "о": "---",
-	"ш": "----", "б": "-...", "й": ".---", "щ": "--.-", "л": ".-..", "и": "-.--", "ф": "..-.", "я": "-.-.",
-	"ь": "-..-", "х": "....", "ж": "...-", "ц": "-.-.", "ю": "..--", "з": "--..", "п": ".--.", "ч": "---.",
-	"э": "..-..", "ї": ".---.",
-	"ъ": ".--.-.",
-
-};
-
-let morze = {};
-let alfabeth = [];
-let j = '';
-for (let i in alfabeth_morze) {
-	j = alfabeth_morze[i];
-	alfabeth.push(i);
-	morze[j] = i
+function convert(alfabeth_morze) {
+	let morze = {};
+	let alfabeth = [];
+	let j = '';
+	for (let i in alfabeth_morze) {
+		j = alfabeth_morze[i];
+		alfabeth.push(i);
+		morze[j] = i
+	}
+	return morze;
 }
 
-let scope = ['.', '-']
-
-function decode_morze(msg) {
+function decode_morze(msg, code) {
+	let morze = convert(alphabeth[code]);
 	let term = '';
 	let sym = '';
 	let result = '';
@@ -55,7 +55,7 @@ function decode_morze(msg) {
 	return result;
 }
 
-function encode_morze(msg) {
+function encode_morze(msg, alphabeth) {
 	let result = '';
 	let sym = '';
 	msg = msg.split(' ');
@@ -74,4 +74,12 @@ function encode_morze(msg) {
 	return result;
 }
 
-export {encode_morze, decode_morze};
+function morze(msg, code, decode=true) {
+	msg = msg.toUpperCase();
+	if(decode) {
+		return decode_morze(msg, alphabeth[code]).toLowerCase();
+	}
+	return encode_morze(msg, alphabeth[code]).toLowerCase();
+}
+
+export {morze};
