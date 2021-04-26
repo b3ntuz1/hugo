@@ -56,9 +56,7 @@ export function morze_func() {
 	let text = getData();
 	if(elem.checked) {
 		view(encode_morze(text));
-		// document.querySelector('#view_pre').innerText = encode_morze(text);
 	} else {
 		view(decode_morze(text));
-		// document.querySelector('#view_pre').innerText = decode_morze(text);
 	}
 }

@@ -28,7 +28,7 @@
 	</div>
 	
 	<div class='float_left_50'>
-		<ul style='list-style: none;'>
+		<ul style='list-style: none; margin: 0; padding: 0;'>
 			<li>
 				<input type='radio' id='rvrs_radio' name='crypto_method' checked />
 				<label for='rvrs_radio'>Reverse text</label>
@@ -45,7 +45,7 @@
 			</li>
 		</ul>
 
-		<select id="alphabeth" class="float_left_100 hidden_elem">
+		<select id="alphabeth" class="float_left_100">
 			<option>Ukrainian</option>
 			<option>Russian</option>
 			<option>English</option>
@@ -76,7 +76,7 @@
 
 	let clear = document.querySelector('#clear');
 	let crypto_method = document.getElementsByName('crypto_method');
-	let sifr = '';
+	let sifr = 'rvrs_radio';
 	let submit = document.querySelector('#submit');
 	let rvrs = document.querySelector('#reverse_text');
 	let crypto = document.querySelector('#crypto');
@@ -130,7 +130,4 @@
 		document.querySelector('#view').value = '';
 		// document.querySelector('#view_pre').innerText = '';
 	};
-
-	
 </script>
-
