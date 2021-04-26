@@ -1,4 +1,4 @@
-import getAlphabet from '/dataStore.js';
+import {getAlphabeth} from '/dataStore.js';
 var raw_alphabet = "abcdefghijklmnopqrstuvwxyzабвгдеёжзийклмнопрстуфхцчшщьыъэюяABCDEFGHIJKLMNOPQRSTUVWXYZАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЬЫЪЭЮЯіІїЇєЄ";
 
 function checkin(char, charset) {
@@ -63,7 +63,7 @@ function encode(msg, offset) {
 }
 
 function rot1(msg, offset, alphabet, action_decode=true) {
-	raw_alphabet = getAlphabet(alphabet);
+	raw_alphabet = getAlphabeth(alphabet);
 	if(action_decode) {
 		return decode(msg, offset)
 	} else {

@@ -37,9 +37,8 @@ export function getAlphabeth(code) {
 			return ALPHABETH_UA;
 		case 'en':
 			return ALPHABETH_EN;
-		default:
-			return None;
 	}
+	return None;
 }
 
 function merge(obj1, obj2) {
