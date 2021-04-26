@@ -28,6 +28,12 @@
 	</div>
 	
 	<div class='float_left_50'>
+		<select id="alphabeth" class="float_left_100">
+			<option value='ua' default>Ukrainian</option>
+			<option value='ru'>Russian</option>
+			<option value='en'>English</option>
+		</select>
+
 		<ul style='list-style: none; margin: 0; padding: 0;'>
 			<li>
 				<input type='radio' id='rvrs_radio' name='crypto_method' checked />
@@ -44,12 +50,6 @@
 				<label for='morze_radio'>Morze</label>
 			</li>
 		</ul>
-
-		<select id="alphabeth" class="float_left_100">
-			<option value='ua' default>Ukrainian</option>
-			<option value='ru'>Russian</option>
-			<option value='en'>English</option>
-		</select>
 	</div>
 
 	<div class="float_right_50">
@@ -59,7 +59,7 @@
 		</span>
 		
 		<span id="crypto" class='hidden_elem'>
-			<label for="rot1">Encode</label>
+			<label for="rot1">Зашифрувати</label>
 			<input type="checkbox" name="rot1" checked=false />
 			<input id="rot1_offset" type="text" name="rot1" value='24' />
 		</span>

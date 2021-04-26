@@ -1,10 +1,10 @@
-import {MORZE_NUMBERS, MORZE_ALPHABETH_RU, MORZE_ALPHABETH_UA, MORZE_ALPHABETH_EN} from '/dataStore.js';
+import {MORZE_NUMBERS, MORZE_CODE_RU, MORZE_CODE_UA, MORZE_CODE_EN} from '/dataStore.js';
 
 let scope = ['*', '-'];
 let alphabeth = {
-	'en': MORZE_ALPHABETH_EN,
-	'ru': MORZE_ALPHABETH_RU,
-	'ua': MORZE_ALPHABETH_UA,
+	'en': MORZE_CODE_EN,
+	'ru': MORZE_CODE_RU,
+	'ua': MORZE_CODE_UA,
 	};
 
 function checkin(symbol, arr) {
@@ -16,31 +16,29 @@ function checkin(symbol, arr) {
 	return false;
 }
 
-function convert(alfabeth_morze) {
+function convert(code) {
 	let morze = {};
-	let alfabeth = [];
-	let j = '';
-	for (let i in alfabeth_morze) {
-		j = alfabeth_morze[i];
-		alfabeth.push(i);
-		morze[j] = i
+	for (let i in code) {
+		morze[code[i]] = i;
 	}
+	console.log(morze);
 	return morze;
 }
 
 function decode_morze(msg, code) {
-	let morze = convert(alphabeth[code]);
+	let morze = convert(code);
+	console.log(morze['\'**--\'']);
 	let term = '';
 	let sym = '';
 	let result = '';
 	// основний цикл
 	for(let i = 0; i<=msg.length; i++) {
 		sym = msg[i];
-		// scope ['.', '-']
 		if(checkin(sym, scope)) {
 			term += sym;
 			continue;
 		}
+		// console.log(term);
 
 		if(checkin(sym, [' ']) && checkin(msg[i+1], scope)) {
 			if(term != '') result += morze[term];
@@ -64,22 +62,24 @@ function encode_morze(msg, alphabeth) {
 		let word = msg[i];
 		for(let j = 0; j < word.length; j++) {
 			sym = word[j];
-			if(!checkin(sym, alfabeth)) {
-				continue;
-			}
-			result += alfabeth_morze[sym] + ' ';
+			// if(!checkin(sym, alphabeth)) {
+			// 	continue;
+			// }
+			result += alphabeth[sym] + ' ';
 		}
 		result += '   ';
 	}
 	return result;
 }
 
-function morze(msg, code, decode=true) {
+function morze(msg, code, encode=true) {
 	msg = msg.toUpperCase();
-	if(decode) {
-		return decode_morze(msg, alphabeth[code]).toLowerCase();
+	let alphas = alphabeth[code];
+	if(encode) {
+		return encode_morze(msg, alphas);
 	}
-	return encode_morze(msg, alphabeth[code]).toLowerCase();
+	msg = msg.replaceAll('–', '-');
+	return decode_morze(msg, alphas);
 }
 
 export {morze};
